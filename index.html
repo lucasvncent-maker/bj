@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Blackjack Cool</title>
+    <title>Blackjack</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game-container">
-        <h1>♠️ Blackjack Royal ♦️</h1>
         
         <div class="area">
             <h2>Croupier : <span id="dealer-score">0</span></h2>
@@ -19,12 +18,24 @@
             <h2>Joueur : <span id="player-score">0</span></h2>
             <div id="player-cards" class="cards-row"></div>
         </div>
-
-        <div id="controls">
-            <button id="hit-btn">Carte !</button>
-            <button id="stand-btn">Je reste</button>
-            <button id="reset-btn" class="hidden">Rejouer</button>
+        
+        <div id="betting-area">
+            <p>Solde : <span id="balance-display">100</span> pts</p>
+            <div id="bet-input-container">
+                Mise (5 - 100) : 
+                <input type="number" id="bet-input" value="10" min="5" max="100">
+                <button id="deal-btn">Distribuer !</button>
+            </div>
         </div>
+
+        <div id="controls" class="hidden">
+            <button id="hit-btn">Carte !</button>
+            <button id="stand-btn">Rester</button>
+            <button id="double-btn">Doubler x2</button>
+            <button id="split-btn" class="hidden">Splitter ✂️</button>
+        </div>
+
+        <button id="reset-btn" class="hidden">Suivant</button>
 
         <p id="message"></p>
     </div>
