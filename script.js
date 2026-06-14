@@ -14,7 +14,11 @@ const flipSound= new Audio('assets\\sounds\\flipcard.mp3');
 const sadSound= new Audio('assets\\sounds\\sad.mp3');
 const winSound= new Audio('assets\\sounds\\win.mp3');
 
+let soundEnabled = true;
+
 function playSound(sound) {
+    if (!soundEnabled) return;
+
     sound.currentTime = 0;
     sound.play().catch(() => {}); // Évite de bloquer le code si l'audio échoue
 }
@@ -53,7 +57,6 @@ function getVisibleDealerScore() {
     return getScore(dealerHand.slice(1)); // Score de la carte face visible
 }
 
-// --- INITIALISATION ---
 async function placeBet() {
     const betInput = document.getElementById('bet-input');
     const betValue = parseInt(betInput.value);
@@ -275,4 +278,23 @@ document.getElementById('reset-btn').onclick = () => {
     playerHands = [];
     dealerHand = [];
     updateUI();
+};
+
+
+function setSound(enabled) {
+    soundEnabled = enabled;
+
+    if (!enabled) {
+        [chipSound, flipSound, sadSound, winSound].forEach(sound => {
+            sound.pause();
+            sound.currentTime = 0;
+        });
+    }
+}
+
+document.getElementById('sound-btn').onclick = () => {
+    setSound(!soundEnabled);
+
+    document.getElementById('sound-btn').textContent =
+        soundEnabled ? "🔊 Son ON" : "🔇 Son OFF";
 };
